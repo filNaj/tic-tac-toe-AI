@@ -1,6 +1,6 @@
 import tkinter as tk
 import random
-
+###########################
 
 def insertLetter(row, column):
     global player
@@ -19,12 +19,32 @@ def insertLetter(row, column):
                 label.config(text='Tie!')
 
 
-def spaceIsFree(pos):
+def spaceIsFree():
     pass
 
-
+# test this function and see if i can still click buttons
 def isWinner():
-    pass
+    # Check rows
+    for row in board:
+        if row[0]['text'] == row[1]['text'] == row[2]['text'] != '':
+            return True
+
+    # Check columns
+    for col in range(3):
+        if board[0][col]['text'] == board[1][col]['text'] == board[2][col]['text'] != '':
+            return True
+
+    # Check diagonals
+    if board[0][0]['text'] == board[1][1]['text'] == board[2][2]['text'] != '':
+        return True
+    if board[0][2]['text'] == board[1][1]['text'] == board[2][0]['text'] != '':
+        return True
+
+    # Check for a Tie
+    if not spaceIsFree():
+        return 'Tie'
+
+    return False
 
 
 def playerMove():
