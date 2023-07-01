@@ -1,7 +1,0 @@
-
-see if isWinner is necessary in insertLetter()
-
-CODE EXPLANATION
-- Board can be initalized with any value, it doesn't have to be 0s. 
-The reason the code works when we check for the text inside a button is because board[row][col]['text'] 
-doesn't check for the value, but for the the inside a button. 

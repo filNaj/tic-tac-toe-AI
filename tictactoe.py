@@ -1,28 +1,33 @@
 import tkinter as tk
 import random
-###########################
+
 
 def insertLetter(row, column):
     global player
-    if player == 'X':
-        if board[row][column]['text'] == '' and not isWinner():
-            board[row][column]['text'] = 'X'
+    # if player == 'X':
+    if board[row][column]['text'] == '' and not isWinner():
+        board[row][column]['text'] = 'X'
 
-            if not isWinner():
-                player = 'O'
-                label.config(text='O Turn ')
+        if not isWinner():
+            player = 'O'
+            label.config(text='O Turn ')
 
-            elif isWinner():
-                label.config(text='You Won!')
+        elif isWinner():
+            label.config(text='You Won!')
 
-            elif isWinner() == 'Tie':
-                label.config(text='Tie!')
+        elif isWinner() == 'Tie':
+            label.config(text='Tie!')
 
 
 def spaceIsFree():
     pass
+    # for row in board:
+    #     for button in row:
+    #         if button['text'] == '':
+    #             return True
+    # return False
 
-# test this function and see if i can still click buttons
+
 def isWinner():
     # Check rows
     for row in board:
