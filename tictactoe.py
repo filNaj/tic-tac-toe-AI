@@ -20,12 +20,11 @@ def insertLetter(row, column):
 
 
 def spaceIsFree():
-    pass
-    # for row in board:
-    #     for button in row:
-    #         if button['text'] == '':
-    #             return True
-    # return False
+    for row in board:
+        for button in row:
+            if button['text'] == '':
+                return True
+    return False
 
 
 def isWinner():
@@ -61,7 +60,13 @@ def selectRandom(li):
 
 
 def computerMove():
-    pass
+    for row in range(len(board)):
+        for col in range(len(board[0])):
+            if board[row][col]['text'] == '':
+                for letter in ['O', 'X']:
+                    if not isWinner():
+                        boardCopy = [rows[:] for rows in board]
+                        boardCopy[row][col]['text'] = letter
 
 
 def isBoardFull(board):
