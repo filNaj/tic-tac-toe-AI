@@ -88,7 +88,9 @@ def computer_move():
 def board_is_full():
     for row in board:
         for element in row:
-            return element['text'] == ''
+            if element['text'] == '':
+                return False
+    return True
 
 
 def new_game():
