@@ -1,6 +1,10 @@
 import tkinter as tk
 import random
 
+board = [
+    [0 for _ in range(3)] for _ in range(3)
+]  # output [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+
 
 def insert_letter(row, column):
     global player
@@ -38,7 +42,7 @@ def space_is_free(row, column):
     return board[row][column]['text'] == ''
 
 
-def is_winner():
+def is_winner(board=board):
     # Check rows
     for row in board:
         if row[0]['text'] == row[1]['text'] == row[2]['text'] != '':
@@ -56,7 +60,7 @@ def is_winner():
         return True
 
     # Check for a Tie
-    if not space_is_free():
+    if not board_is_full():
         return 'Tie'
 
     return False
@@ -73,14 +77,15 @@ def selectRandom(li):
 def computer_move():
     for row in range(len(board)):
         for col in range(len(board[0])):
-            if board[row][col]['text'] == '':
+            if space_is_free(row, col):
                 for letter in ['O', 'X']:
-                    if not is_winner():
-                        boardCopy = [rows[:] for rows in board]
-                        boardCopy[row][col]['text'] = letter
+                    boardCopy = [rows[:] for rows in board]
+                    boardCopy[row][col]['text'] = letter
+                    if is_winner(boardCopy):
+                        insert_letter(row, col)
 
 
-def board_is_full(board):
+def board_is_full():
     for row in board:
         for element in row:
             return element['text'] == ''
@@ -100,9 +105,9 @@ window.title('Tic Tac Toe')
 
 players = ['X', 'O']
 player = random.choice(players)
-board = [
-    [0 for _ in range(3)] for _ in range(3)
-]  # output [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+# board = [
+#     [0 for _ in range(3)] for _ in range(3)
+# ]  # output [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
 label = tk.Label(text=player + ' Turn')
 label.pack(side='top')
