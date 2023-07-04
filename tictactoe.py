@@ -2,32 +2,43 @@ import tkinter as tk
 import random
 
 
-def insertLetter(row, column):
+def insert_letter(row, column):
     global player
-    # if player == 'X':
-    if board[row][column]['text'] == '' and not isWinner():
-        board[row][column]['text'] = 'X'
 
-        if not isWinner():
-            player = 'O'
-            label.config(text='O Turn ')
+    if space_is_free(row, column) and not is_winner():
+        if player == 'X':
+            board[row][column]['text'] = 'X'
 
-        elif isWinner():
-            label.config(text='You Won!')
+            if not is_winner():
+                player = 'O'
+                label.config(text='O Turn ')
+                # computer_move
 
-        elif isWinner() == 'Tie':
-            label.config(text='Tie!')
+            elif is_winner():
+                label.config(text='You Won!')
+
+            elif is_winner() == 'Tie':
+                label.config(text='Tie!')
+
+        else:
+            board[row][column]['text'] = 'O'
+
+            if not is_winner():
+                player = 'X'
+                label.config(text='X Turn ')
+
+            elif is_winner():
+                label.config(text='O Won')
+
+            elif is_winner() == 'Tie':
+                label.config(text='Tie!')
 
 
-def spaceIsFree():
-    for row in board:
-        for button in row:
-            if button['text'] == '':
-                return True
-    return False
+def space_is_free(row, column):
+    return board[row][column]['text'] == ''
 
 
-def isWinner():
+def is_winner():
     # Check rows
     for row in board:
         if row[0]['text'] == row[1]['text'] == row[2]['text'] != '':
@@ -35,7 +46,7 @@ def isWinner():
 
     # Check columns
     for col in range(3):
-        if board[0][col]['text'] == board[1][col]['text'] == board[2][col]['text'] != '':
+        if (board[0][col]['text'] == board[1][col]['text'] == board[2][col]['text'] != ''):
             return True
 
     # Check diagonals
@@ -45,13 +56,13 @@ def isWinner():
         return True
 
     # Check for a Tie
-    if not spaceIsFree():
+    if not space_is_free():
         return 'Tie'
 
     return False
 
 
-def playerMove():
+def player_move():
     pass
 
 
@@ -59,18 +70,24 @@ def selectRandom(li):
     pass
 
 
-def computerMove():
+def computer_move():
     for row in range(len(board)):
         for col in range(len(board[0])):
             if board[row][col]['text'] == '':
                 for letter in ['O', 'X']:
-                    if not isWinner():
+                    if not is_winner():
                         boardCopy = [rows[:] for rows in board]
                         boardCopy[row][col]['text'] = letter
 
 
-def isBoardFull(board):
+def board_is_full(board):
     pass
+
+    for row in board:
+        for button in row:
+            if button['text'] == '':
+                return True
+    return False
 
 
 def new_game():
@@ -107,7 +124,7 @@ for row in range(3):
             frame,
             width=10,
             height=5,
-            command=lambda row=row, col=column: insertLetter(row, col),
+            command=lambda row=row, col=column: insert_letter(row, col),
         )
         board[row][column].grid(row=row, column=column)
 
