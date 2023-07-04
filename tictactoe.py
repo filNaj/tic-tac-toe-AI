@@ -12,7 +12,7 @@ def insert_letter(row, column):
             if not is_winner():
                 player = 'O'
                 label.config(text='O Turn ')
-                # computer_move
+                computer_move()
 
             elif is_winner():
                 label.config(text='You Won!')
@@ -81,13 +81,9 @@ def computer_move():
 
 
 def board_is_full(board):
-    pass
-
     for row in board:
-        for button in row:
-            if button['text'] == '':
-                return True
-    return False
+        for element in row:
+            return element['text'] == ''
 
 
 def new_game():
