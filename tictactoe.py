@@ -86,11 +86,16 @@ def computer_move():
 
 
 def board_is_full():
+    spaces = 9
     for row in board:
         for element in row:
-            if element['text'] == '':
-                return False
-    return True
+            if element['text'] != '':
+                spaces -= 1
+
+    if spaces == 0:
+        return False
+    else:
+        return True
 
 
 def new_game():
