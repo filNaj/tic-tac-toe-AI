@@ -32,7 +32,7 @@ def insert_letter(row, column):
                 label.config(text='X Turn ')
 
             elif is_winner():
-                label.config(text='O Won')
+                label.config(text='O Won :( ')
 
             elif is_winner() == 'Tie':
                 label.config(text='Tie!')
@@ -50,7 +50,12 @@ def is_winner(board=board):
 
     # Check columns
     for col in range(3):
-        if (board[0][col]['text'] == board[1][col]['text'] == board[2][col]['text'] != ''):
+        if (
+            board[0][col]['text']
+            == board[1][col]['text']
+            == board[2][col]['text']
+            != ''
+        ):
             return True
 
     # Check diagonals
@@ -60,7 +65,7 @@ def is_winner(board=board):
         return True
 
     # Check for a Tie
-    if not board_is_full():
+    if board_is_full():
         return 'Tie'
 
     return False
@@ -75,6 +80,7 @@ def selectRandom(li):
 
 
 def computer_move():
+    # Possible winning move
     for row in range(len(board)):
         for col in range(len(board[0])):
             if space_is_free(row, col):
@@ -83,6 +89,13 @@ def computer_move():
                     boardCopy[row][col]['text'] = letter
                     if is_winner(boardCopy):
                         insert_letter(row, col)
+                        return row, col
+
+    # Corners
+
+    # Center
+
+    # Edges
 
 
 def board_is_full():
@@ -93,9 +106,9 @@ def board_is_full():
                 spaces -= 1
 
     if spaces == 0:
-        return False
-    else:
         return True
+    else:
+        return False
 
 
 def new_game():
