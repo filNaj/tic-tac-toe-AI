@@ -76,7 +76,10 @@ def player_move():
 
 
 def selectRandom(li):
-    pass
+    import random
+    ln = len(li)
+    r = random.randrange(0, ln)
+    return li[r]
 
 
 def computer_move():
@@ -95,17 +98,31 @@ def computer_move():
     corners = []
     row, col = possible_moves()
     for move in possible_moves():
-        row = move[0]
-        col = move[1]
         if move in [[0, 0], [0, 2], [2, 0], [2, 2]]:
             corners.append(move)
         if len(corners) > 0:
             selectRandom(corners)
+            # row = move[0]
+            # col = move[1]
+            insert_letter(row, col)
             return row, col
 
     # Center
+    if [1, 1] in possible_moves():
+        insert_letter(1, 1)
+        return 1, 1
 
     # Edges
+    edges = []
+    for move in possible_moves():
+        if move in [[0, 1], [1, 0], [1, 2], [2, 1]]:
+            edges.append(move)
+        if len(edges) > 0:
+            selectRandom(edges)
+            # row = move[0]
+            # col = move[1]
+            insert_letter(row, col)
+            return row, col
 
 
 def possible_moves():
