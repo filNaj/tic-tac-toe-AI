@@ -81,27 +81,34 @@ def selectRandom(li):
 
 def computer_move():
     # Possible winning move
-    row, col = possible_moves()
     for letter in ['O', 'X']:
-        boardCopy = [rows[:] for rows in board]
-        boardCopy[row][col]['text'] = letter
-        if is_winner(boardCopy):
-            insert_letter(row, col)
-            return row, col
+        for move in possible_moves():
+            row = move[0]
+            col = move[1]
+            boardCopy = [rows[:] for rows in board]
+            boardCopy[row][col]['text'] = letter
+            if is_winner(boardCopy):
+                insert_letter(row, col)
+                return row, col
 
     # Corners
+    corners = []
+    row, col = possible_moves()
+
 
     # Center
 
     # Edges
-    pass
 
 
 def possible_moves():
+    available_positions_indices = []
     for row in range(len(board)):
         for col in range(len(board[0])):
             if space_is_free(row, col):
-                return row, col
+                position = [row, col]
+                available_positions_indices.append(position)
+    return available_positions_indices
 
 
 def board_is_full():
