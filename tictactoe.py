@@ -77,6 +77,7 @@ def player_move():
 
 def select_random(li):
     import random
+
     ln = len(li)
     r = random.randrange(0, ln)
     return li[r]
@@ -93,10 +94,10 @@ def computer_move():
             if is_winner(boardCopy):
                 insert_letter(row, col)
                 return row, col
+            boardCopy[row][col]['text'] = ''
 
     # Corners
     corners = []
-    row, col = possible_moves()
     for move in possible_moves():
         if move in [[0, 0], [0, 2], [2, 0], [2, 2]]:
             corners.append(move)
