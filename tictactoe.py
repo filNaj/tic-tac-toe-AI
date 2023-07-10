@@ -94,7 +94,14 @@ def computer_move():
     # Corners
     corners = []
     row, col = possible_moves()
-
+    for move in possible_moves():
+        row = move[0]
+        col = move[1]
+        if move in [[0, 0], [0, 2], [2, 0], [2, 2]]:
+            corners.append(move)
+        if len(corners) > 0:
+            selectRandom(corners)
+            return row, col
 
     # Center
 
