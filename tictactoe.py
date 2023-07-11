@@ -13,29 +13,25 @@ def insert_letter(row, column):
         if player == 'X':
             board[row][column]['text'] = 'X'
 
-            if not is_winner():
+            if is_winner() is True:
+                label.config(text='You Won!')
+            elif is_winner() == 'Tie':
+                label.config(text='Tie!')
+            else:
                 player = 'O'
                 label.config(text='O Turn ')
                 computer_move()
 
-            elif is_winner():
-                label.config(text='You Won!')
-
-            elif is_winner() == 'Tie':
-                label.config(text='Tie!')
-
         else:
             board[row][column]['text'] = 'O'
 
-            if not is_winner():
-                player = 'X'
-                label.config(text='X Turn ')
-
-            elif is_winner():
+            if is_winner() is True:
                 label.config(text='O Won :( ')
-
             elif is_winner() == 'Tie':
                 label.config(text='Tie!')
+            else:
+                player = 'X'
+                label.config(text='X Turn ')
 
 
 def space_is_free(row, column):
