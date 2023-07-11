@@ -144,7 +144,13 @@ def board_is_full():
 
 
 def new_game():
-    pass
+    global player
+    player = random.choice(players)
+    label.config(text=player + ' Turn')
+
+    for row in board:
+        for col in row:
+            col['text'] = ''
 
 
 def main():
@@ -157,9 +163,6 @@ window.title('Tic Tac Toe')
 
 players = ['X', 'O']
 player = random.choice(players)
-# board = [
-#     [0 for _ in range(3)] for _ in range(3)
-# ]  # output [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
 label = tk.Label(text=player + ' Turn')
 label.pack(side='top')
