@@ -90,6 +90,7 @@ def computer_move():
             boardCopy = [rows[:] for rows in board]
             boardCopy[row][col]['text'] = letter
             if is_winner(boardCopy):
+                boardCopy[row][col]['text'] = ''
                 insert_letter(row, col)
                 return row, col
             boardCopy[row][col]['text'] = ''
