@@ -87,13 +87,12 @@ def computer_move():
         for move in possible_moves():
             row = move[0]
             col = move[1]
-            boardCopy = [rows[:] for rows in board]
-            boardCopy[row][col]['text'] = letter
-            if is_winner(boardCopy):
-                boardCopy[row][col]['text'] = ''
+            board[row][col]['text'] = letter
+            if is_winner(board):
+                board[row][col]['text'] = ''
                 insert_letter(row, col)
                 return row, col
-            boardCopy[row][col]['text'] = ''
+            board[row][col]['text'] = ''
 
     # Corners
     corners = []
