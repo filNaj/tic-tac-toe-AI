@@ -149,9 +149,11 @@ def new_game():
     global player
     player = random.choice(players)
     label.config(text=player + ' Turn')
-    
+
     if player == 'O':
+        disable_buttons()
         window.after(1000, computer_move)
+        window.after(1000, enable_buttons)
 
     for row in board:
         for col in row:
@@ -198,6 +200,8 @@ for row in range(3):
         board[row][column].grid(row=row, column=column)
 
 if player == 'O':
+    disable_buttons()
     window.after(1000, computer_move)
+    window.after(1000, enable_buttons)
 
 window.mainloop()
