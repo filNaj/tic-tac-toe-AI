@@ -40,7 +40,7 @@ def space_is_free(row, column):
     return board[row][column]['text'] == ''
 
 
-def is_winner(board=board):
+def is_winner():
     # Check rows
     for row in board:
         if row[0]['text'] == row[1]['text'] == row[2]['text'] != '':
@@ -86,7 +86,7 @@ def computer_move():
             row = move[0]
             col = move[1]
             board[row][col]['text'] = letter
-            if is_winner(board):
+            if is_winner():
                 board[row][col]['text'] = ''
                 insert_letter(row, col)
                 return row, col
