@@ -85,7 +85,7 @@ def computer_move():
             if is_winner():
                 board[row][col]['text'] = ''
                 insert_letter(row, col)
-                return row, col
+                return
             board[row][col]['text'] = ''
 
     # Corners
@@ -98,12 +98,12 @@ def computer_move():
         row = corner[0]
         col = corner[1]
         insert_letter(row, col)
-        return row, col
+        return
 
     # Center
     if [1, 1] in possible_moves():
         insert_letter(1, 1)
-        return 1, 1
+        return
 
     # Edges
     edges = []
@@ -115,7 +115,7 @@ def computer_move():
         row = edge[0]
         col = edge[1]
         insert_letter(row, col)
-        return row, col
+        return
 
 
 def possible_moves():
