@@ -22,6 +22,7 @@ def insert_letter(row, column):
                 label.config(text='O Turn ')
                 disable_buttons()
                 window.after(1000, computer_move)
+                window.after(1000, enable_buttons)
 
         else:
             board[row][column]['text'] = 'O'
