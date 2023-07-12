@@ -149,6 +149,9 @@ def new_game():
     global player
     player = random.choice(players)
     label.config(text=player + ' Turn')
+    
+    if player == 'O':
+        window.after(1000, computer_move)
 
     for row in board:
         for col in row:
@@ -193,5 +196,8 @@ for row in range(3):
             command=lambda row=row, col=column: insert_letter(row, col),
         )
         board[row][column].grid(row=row, column=column)
+
+if player == 'O':
+    window.after(1000, computer_move)
 
 window.mainloop()
