@@ -20,7 +20,8 @@ def insert_letter(row, column):
             else:
                 player = 'O'
                 label.config(text='O Turn ')
-                computer_move()
+                disable_buttons()
+                window.after(1000, computer_move)
 
         else:
             board[row][column]['text'] = 'O'
@@ -153,8 +154,16 @@ def new_game():
             col['text'] = ''
 
 
-def main():
-    pass
+def disable_buttons():
+    for row in board:
+        for button in row:
+            button.config(state=tk.DISABLED, disabledforeground=button['foreground'])
+
+
+def enable_buttons():
+    for row in board:
+        for button in row:
+            button.config(state=tk.NORMAL)
 
 
 # Tkinter
