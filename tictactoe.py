@@ -69,10 +69,6 @@ def is_winner():
     return False
 
 
-def player_move():
-    pass
-
-
 def select_random(li):
     ln = len(li)
     r = random.randrange(0, ln)
