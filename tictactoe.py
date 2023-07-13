@@ -47,12 +47,7 @@ def is_winner():
 
     # Check columns
     for col in range(3):
-        if (
-            board[0][col]['text']
-            == board[1][col]['text']
-            == board[2][col]['text']
-            != ''
-        ):
+        if (board[0][col]['text'] == board[1][col]['text'] == board[2][col]['text'] != ''):
             return True
 
     # Check diagonals
