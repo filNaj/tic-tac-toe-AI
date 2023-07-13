@@ -1,9 +1,8 @@
 import tkinter as tk
 import random
 
-board = [
-    [0 for _ in range(3)] for _ in range(3)
-]  # output [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+delayed_computer_move = None
+board = [[0 for _ in range(3)] for _ in range(3)]  # output [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
 
 def insert_letter(row, column):
@@ -143,12 +142,18 @@ def board_is_full():
 
 def new_game():
     global player
+    global delayed_computer_move
+
     player = random.choice(players)
     label.config(text=player + ' Turn')
 
+    # Cancel any pending computer_move actions
+    if delayed_computer_move is not None:
+        window.after_cancel(delayed_computer_move)
+
     if player == 'O':
         disable_buttons()
-        window.after(1000, computer_move)
+        delayed_computer_move = window.after(1000, computer_move)
         window.after(1000, enable_buttons)
 
     for row in board:
